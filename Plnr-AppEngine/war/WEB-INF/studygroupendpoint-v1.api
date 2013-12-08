@@ -1,0 +1,345 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "studygroupendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "columbia.edu",
+  "ownerName" : "columbia.edu",
+  "packagePath" : "cloud.plnr.entities",
+  "methods" : {
+    "studygroupendpoint.removeStudyGroup" : {
+      "path" : "studygroup/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.removeStudyGroup",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "studygroupendpoint.updateStudyGroup" : {
+      "path" : "studygroup",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.updateStudyGroup",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "studygroupendpoint.listStudyGroup" : {
+      "path" : "studygroup",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.listStudyGroup",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "studygroupendpoint.insertStudyGroup" : {
+      "path" : "studygroup",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.insertStudyGroup",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "studygroupendpoint.getStudyGroup" : {
+      "path" : "studygroup/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.getStudyGroup",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "StudyGroup" : {
+        "id" : "StudyGroup",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "locationHash" : {
+            "$ref" : "GeoPt"
+          },
+          "locationName" : {
+            "type" : "string"
+          },
+          "startTime" : {
+            "$ref" : "Date"
+          },
+          "duration" : {
+            "$ref" : "Duration"
+          },
+          "attendees" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "User"
+            }
+          },
+          "subject" : {
+            "$ref" : "Subject"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "complete" : {
+            "type" : "boolean"
+          },
+          "namespace" : {
+            "type" : "string"
+          }
+        }
+      },
+      "GeoPt" : {
+        "id" : "GeoPt",
+        "type" : "object",
+        "properties" : {
+          "latitude" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "longitude" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        }
+      },
+      "Date" : {
+        "id" : "Date",
+        "type" : "object",
+        "properties" : {
+          "hours" : {
+            "type" : "integer"
+          },
+          "minutes" : {
+            "type" : "integer"
+          },
+          "seconds" : {
+            "type" : "integer"
+          },
+          "time" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "month" : {
+            "type" : "integer"
+          },
+          "year" : {
+            "type" : "integer"
+          },
+          "day" : {
+            "type" : "integer"
+          },
+          "timezoneOffset" : {
+            "type" : "integer"
+          },
+          "date" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Duration" : {
+        "id" : "Duration",
+        "type" : "string",
+        "enum" : [ "A_WHILE", "DEEP_DIVE", "ALL_THE_WAY" ]
+      },
+      "User" : {
+        "id" : "User",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "userName" : {
+            "type" : "string"
+          },
+          "locationName" : {
+            "type" : "string"
+          },
+          "tutor" : {
+            "type" : "boolean"
+          },
+          "subjects" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Subject"
+            }
+          },
+          "status" : {
+            "$ref" : "Status"
+          },
+          "tutorStatus" : {
+            "$ref" : "TutorStatus"
+          },
+          "locationHash" : {
+            "$ref" : "GeoPt"
+          }
+        }
+      },
+      "Subject" : {
+        "id" : "Subject",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Status" : {
+        "id" : "Status",
+        "type" : "string",
+        "enum" : [ "AVAILABLE", "N_AVAILABLE" ]
+      },
+      "TutorStatus" : {
+        "id" : "TutorStatus",
+        "type" : "string",
+        "enum" : [ "AVAILABLE", "N_AVAILABLE" ]
+      },
+      "CollectionResponse_StudyGroup" : {
+        "id" : "CollectionResponse_StudyGroup",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "StudyGroup"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.removeStudyGroup" : {
+      },
+      "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.updateStudyGroup" : {
+        "request" : {
+          "$ref" : "StudyGroup"
+        },
+        "response" : {
+          "$ref" : "StudyGroup"
+        }
+      },
+      "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.listStudyGroup" : {
+        "response" : {
+          "$ref" : "CollectionResponse_StudyGroup"
+        }
+      },
+      "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.insertStudyGroup" : {
+        "request" : {
+          "$ref" : "StudyGroup"
+        },
+        "response" : {
+          "$ref" : "StudyGroup"
+        }
+      },
+      "edu.columbia.cloud.plnr.entities.StudyGroupEndpoint.getStudyGroup" : {
+        "response" : {
+          "$ref" : "StudyGroup"
+        }
+      }
+    }
+  }
+}
